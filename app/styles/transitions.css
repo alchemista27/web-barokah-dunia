@@ -1,0 +1,36 @@
+/* ============================================================
+   TRANSITIONS.CSS — Smooth inter-page fade + slide
+   ============================================================ */
+
+/* Initial state: page enters faded + shifted down slightly */
+body {
+  animation: pageEnter 350ms ease;
+}
+
+@keyframes pageEnter {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Exit state applied by JS before navigation */
+body.page-exit {
+  animation: pageExit 280ms ease forwards;
+  pointer-events: none;
+}
+
+@keyframes pageExit {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+}

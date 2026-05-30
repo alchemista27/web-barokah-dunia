@@ -1,0 +1,23 @@
+# 1. Disable Directory Listing
+Options -Indexes
+
+# 2. Deny all access by default
+Require all denied
+
+# 3. Only allow PDF files to be accessed
+<FilesMatch "\.(pdf|PDF)$">
+    Require all granted
+</FilesMatch>
+
+# 4. Disable PHP and Script Execution (Redundancy)
+<FilesMatch "\.(php|php3|php4|php5|php7|php8|phtml|pl|py|jsp|asp|htm|html|shtml|sh|cgi)$">
+    Require all denied
+</FilesMatch>
+
+# Force download for PDFs (Optional, prevents malicious PDFs from executing in browser)
+<IfModule mod_headers.c>
+    <FilesMatch "\.(pdf|PDF)$">
+        Header set Content-Disposition "attachment"
+        Header set X-Content-Type-Options "nosniff"
+    </FilesMatch>
+</IfModule>

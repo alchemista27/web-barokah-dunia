@@ -1,0 +1,334 @@
+/* ============================================================
+   MODAL.CSS — Product Detail Modal
+   ============================================================ */
+
+/* --- Overlay backdrop --- */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  background-color: rgba(22, 44, 58, 0.65);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+
+  /* Hidden state */
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 300ms ease;
+}
+
+.modal-overlay.is-open {
+  opacity: 1;
+  pointer-events: all;
+}
+
+/* --- Modal box --- */
+.modal {
+  background-color: var(--color-surface);
+  border-radius: 12px;
+  width: 100%;
+  max-width: 680px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 24px 64px rgba(22, 44, 58, 0.25);
+  position: relative;
+
+  /* Hidden state */
+  transform: translateY(24px) scale(0.97);
+  transition: transform 300ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.modal-overlay.is-open .modal {
+  transform: translateY(0) scale(1);
+}
+
+/* Custom scrollbar inside modal */
+.modal::-webkit-scrollbar { width: 6px; }
+.modal::-webkit-scrollbar-track { background: transparent; }
+.modal::-webkit-scrollbar-thumb { background: var(--color-border); border-radius: 4px; }
+
+/* --- Close button --- */
+.modal__close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 10;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color var(--transition-base), transform var(--transition-fast);
+}
+
+.modal__close:hover {
+  background-color: var(--color-neutral);
+  transform: rotate(90deg);
+}
+
+.modal__close svg {
+  width: 18px;
+  height: 18px;
+  color: var(--color-primary);
+}
+
+/* --- Hero image --- */
+.modal__img-wrap {
+  position: relative;
+  width: 100%;
+  height: 280px;
+  overflow: hidden;
+  border-radius: 12px 12px 0 0;
+}
+
+.modal__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+.modal__badge {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  background-color: var(--color-tertiary);
+  color: var(--color-on-primary);
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  border-radius: 2px;
+}
+
+/* --- Content body --- */
+.modal__body {
+  padding: 28px 32px 32px;
+}
+
+@media (max-width: 480px) {
+  .modal__body { padding: 20px; }
+}
+
+.modal__category {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-secondary);
+  margin-bottom: 8px;
+}
+
+.modal__title {
+  font-family: var(--font-display);
+  font-size: clamp(1.3rem, 2.5vw, 1.7rem);
+  font-weight: 500;
+  color: var(--color-primary);
+  line-height: 1.2;
+  margin-bottom: 12px;
+}
+
+.modal__desc {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--color-secondary);
+  line-height: 1.65;
+  margin-bottom: 24px;
+}
+
+/* --- Divider --- */
+.modal__divider {
+  width: 40px;
+  height: 2px;
+  background-color: var(--color-tertiary);
+  margin-bottom: 24px;
+}
+
+/* --- Specs label --- */
+.modal__specs-label {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-secondary);
+  margin-bottom: 14px;
+}
+
+/* --- Specs table --- */
+.modal__specs {
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 28px;
+}
+
+.modal__spec-row {
+  display: grid;
+  grid-template-columns: 1fr 1.6fr;
+  gap: 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.modal__spec-row:last-child {
+  border-bottom: none;
+}
+
+.modal__spec-key {
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--color-primary);
+  padding: 12px 16px;
+  background-color: var(--color-neutral);
+  border-right: 1px solid var(--color-border);
+}
+
+.modal__spec-val {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  color: var(--color-secondary);
+  padding: 12px 16px;
+  line-height: 1.5;
+}
+
+/* --- Footer CTA --- */
+.modal__footer {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.modal__footer .btn {
+  flex: 1;
+  justify-content: center;
+  min-width: 180px;
+}
+
+/* --- Make product titles clickable --- */
+.product-card__name {
+  cursor: pointer;
+  transition: color var(--transition-fast);
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-underline-offset: 3px;
+  transition: color var(--transition-fast), text-decoration-color var(--transition-fast);
+}
+
+.product-card__name:hover {
+  color: var(--color-tertiary);
+  text-decoration-color: var(--color-tertiary);
+}
+
+/* --- Hint icon next to title --- */
+.product-card__name-hint {
+  display: inline-block;
+  margin-left: 6px;
+  font-size: 0.75rem;
+  color: var(--color-tertiary);
+  vertical-align: middle;
+  opacity: 0.7;
+}
+
+/* ============================================================
+   LIGHTBOX GALLERY
+   ============================================================ */
+.lightbox-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translateY(24px) scale(0.97);
+  transition: transform 300ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.modal-overlay.is-open .lightbox-container {
+  transform: translateY(0) scale(1);
+}
+
+.lightbox-img {
+  max-width: 90vw;
+  max-height: 85vh;
+  border-radius: 8px;
+  box-shadow: 0 12px 48px rgba(0,0,0,0.5);
+  object-fit: contain;
+}
+
+.lightbox-nav {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(22, 44, 58, 0.5);
+  color: white;
+  border: none;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+  z-index: 2010;
+}
+
+.lightbox-nav:hover {
+  background: rgba(22, 44, 58, 0.9);
+  transform: translateY(-50%) scale(1.05);
+}
+
+.lightbox-prev { left: 24px; }
+.lightbox-next { right: 24px; }
+
+.lightbox-close-btn {
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  background: rgba(22, 44, 58, 0.5);
+  border: none;
+  color: white;
+  z-index: 2010;
+  cursor: pointer;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.lightbox-close-btn:hover {
+  background: rgba(22, 44, 58, 0.9);
+  transform: scale(1.05) rotate(90deg);
+}
+
+@media (max-width: 768px) {
+  .lightbox-prev { left: 12px; width: 44px; height: 44px; }
+  .lightbox-next { right: 12px; width: 44px; height: 44px; }
+  .lightbox-close-btn { top: 12px; right: 12px; width: 40px; height: 40px; }
+}
+
+.gallery-img { 
+  cursor: pointer; 
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 8px;
+}
+
+.gallery-img:hover { 
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+}
