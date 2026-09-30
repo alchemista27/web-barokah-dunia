@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
+import Reveal from '../components/Reveal';
 import styles from './about.module.css';
 import { WA_NUMBER } from '@/app/lib/data';
 
@@ -17,19 +18,19 @@ export default function AboutPage() {
     <main className={styles.pageMain}>
       {/* PAGE HERO */}
       <section className={styles.pageHero} aria-label="About Us hero">
-        <div className={`container ${styles.pageHeroInner}`}>
+        <Reveal className={`container ${styles.pageHeroInner}`}>
           <span className={styles.pageHeroEyebrow}>Our Story</span>
           <h1 className={styles.pageHeroTitle}>
             Where Tradition<br />Meets <em>Global</em> Excellence
           </h1>
-        </div>
+        </Reveal>
       </section>
 
       {/* OUR STORY */}
       <section className={styles.section} aria-labelledby="story-title">
         <div className="container">
           <div className={styles.storyGrid}>
-            <div className={styles.storyContent}>
+            <Reveal className={styles.storyContent}>
               <p className={`label ${styles.sectionEyebrow}`}>About Us</p>
               <h2 className={`${styles.h2} ${styles.storyTitle}`} id="story-title">Rooted in Heritage,<br />Reaching the World</h2>
               <div className={styles.divider}></div>
@@ -52,13 +53,13 @@ export default function AboutPage() {
               >
                 <WAIcon /> Get in Touch
               </a>
-            </div>
+            </Reveal>
 
-            <div style={{ position: 'relative' }}>
+            <Reveal direction="left" delay={200} style={{ position: 'relative' }}>
               <div className={styles.storyImageWrap}>
                 <img src="/assets/hero-info-barokah02.webp" alt="Artisan Craftsmanship" className={styles.storyImage} />
               </div>
-            </div>
+            </Reveal>
           </div>
         </div>
       </section>
@@ -77,11 +78,11 @@ export default function AboutPage() {
       {/* PILLARS */}
       <section className={styles.pillarsSection} aria-labelledby="pillars-title">
         <div className="container">
-          <div className={styles.pillarsHeader}>
+          <Reveal className={styles.pillarsHeader}>
             <p className={`label ${styles.sectionEyebrow}`}>Our Principles</p>
             <h2 className={styles.h2} id="pillars-title">Why Choose Us</h2>
             <div className={styles.dividerCenter}></div>
-          </div>
+          </Reveal>
 
           <div className={styles.pillarsGrid}>
             {[
@@ -101,11 +102,11 @@ export default function AboutPage() {
                 body: 'While our roots are local, our quality is international. We ensure every product is durable, beautiful, and ready for the global market — backed by compliance with EU standards and phytosanitary certification.'
               }
             ].map((pillar, i) => (
-              <div key={i} className={styles.pillar}>
+              <Reveal delay={i * 150} key={i} className={styles.pillar}>
                 <div className={styles.pillarNumber}>{pillar.number}</div>
                 <h3 className={`${styles.h3} ${styles.pillarTitle}`}>{pillar.title}</h3>
                 <p className={styles.pillarBody}>{pillar.body}</p>
-              </div>
+              </Reveal>
             ))}
           </div>
         </div>

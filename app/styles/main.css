@@ -4,41 +4,39 @@
    ============================================================ */
 
 /* --- Google Fonts --- */
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Lora:wght@700&display=swap');
 
 /* --- Design Tokens --- */
 :root {
   /* Colors */
-  --color-primary:    #162C3A;
-  --color-secondary:  #7B8B97;
-  --color-tertiary:   #C9A16A;
-  --color-neutral:    #F2ECE0;
-  --color-surface:    #FBF7EC;
-  --color-on-primary: #FBF7EC;
+  --color-primary:    #1A1D16;
+  --color-secondary:  #6D7660;
+  --color-tertiary:   #597928;
+  --color-neutral:    #F7F8F7;
+  --color-surface:    #FFFFFF;
+  --color-on-primary: #FFFFFF;
+  --color-on-tertiary: #FFFFFF;
 
   /* Derived shades */
-  --color-primary-dark:    #0e1f29;
-  --color-tertiary-hover:  #b88d57;
-  --color-border:          #ddd5c5;
+  --color-primary-dark:    #0f110d;
+  --color-tertiary-hover:  #496521;
+  --color-border:          #E6E7E4;
 
   /* Typography */
-  --font-display:  'Playfair Display', Georgia, serif;
-  --font-body:     'Jost', system-ui, sans-serif;
+  --font-display:  'Lora', Georgia, serif;
+  --font-body:     'Inter', system-ui, sans-serif;
 
-  --fs-display:    clamp(2.5rem, 5vw, 4rem);
-  --fs-h1:         clamp(1.6rem, 3vw, 2.2rem);
-  --fs-h2:         clamp(1.2rem, 2vw, 1.7rem);
-  --fs-h3:         clamp(1rem, 1.5vw, 1.25rem);
-  --fs-body:       0.95rem;
-  --fs-label:      0.7rem;
+  --fs-display:    3rem;
+  --fs-h1:         3rem;
+  --fs-h2:         2rem;
+  --fs-h3:         1.25rem;
+  --fs-body:       1rem;
+  --fs-label:      0.75rem;
 
-  --fw-display:    500;
-  --fw-h:          500;
+  --fw-display:    700;
+  --fw-h:          700;
   --fw-body:       400;
-  --fw-label:      500;
-
-  --lh-body:       1.65;
-  --ls-label:      0.18em;
+  --fw-label:      600;
 
   /* Spacing */
   --sp-xs:  4px;
@@ -49,18 +47,13 @@
   --sp-2xl: 72px;
 
   /* Radius */
-  --r-sm: 2px;
-  --r-md: 4px;
-  --r-lg: 6px;
-
-  /* Transitions */
-  --transition-fast:   150ms ease;
-  --transition-base:   250ms ease;
-  --transition-slow:   400ms ease;
+  --r-sm: 4px;
+  --r-md: 8px;
+  --r-lg: 12px;
 
   /* Shadows (subtle — flat system) */
-  --shadow-card: 0 1px 4px rgba(22, 44, 58, 0.08);
-  --shadow-lift: 0 4px 16px rgba(22, 44, 58, 0.12);
+  --shadow-card: none;
+  --shadow-lift: none;
 
   /* Layout */
   --container-max: 1200px;
@@ -176,8 +169,8 @@ h3, .h3 {
   display: inline-flex;
   align-items: center;
   gap: var(--sp-sm);
-  padding: 12px 24px;
-  border-radius: var(--r-md);
+  padding: 12px 20px;
+  border-radius: var(--r-sm);
   font-family: var(--font-body);
   font-size: var(--fs-body);
   font-weight: 500;
@@ -193,7 +186,7 @@ h3, .h3 {
 
 .btn-primary {
   background-color: var(--color-tertiary);
-  color: var(--color-on-primary);
+  color: var(--color-on-tertiary);
 }
 
 .btn-primary:hover {
@@ -240,9 +233,9 @@ h3, .h3 {
 .card {
   background-color: var(--color-surface);
   color: var(--color-primary);
-  border-radius: var(--r-lg);
-  padding: 24px;
-  box-shadow: var(--shadow-card);
+  border-radius: var(--r-md);
+  padding: 20px;
+  border: 1px solid var(--color-border);
   transition: box-shadow var(--transition-base),
               transform var(--transition-base);
 }

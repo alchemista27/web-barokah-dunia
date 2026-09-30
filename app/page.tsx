@@ -1,5 +1,6 @@
 import Link from "next/link";
 import HomeGalleryLightbox from "./components/HomeGalleryLightbox";
+import Reveal from "./components/Reveal";
 import styles from "./page.module.css";
 
 const WAIcon = () => (
@@ -16,7 +17,7 @@ export default function Home() {
       {/* HERO */}
       <section className={styles.hero} aria-label="Hero section">
         <div className={`container ${styles.heroInner}`}>
-          <div className={styles.heroContent}>
+          <Reveal className={styles.heroContent} delay={100}>
             <span className={styles.heroEyebrow}>Est. Indonesia · Global Export</span>
             <h1 className={styles.heroHeadline}>
               Bringing <em>Nature&apos;s</em><br />Finest Art<br />into Your Home
@@ -37,33 +38,39 @@ export default function Home() {
                 <WAIcon />
                 Chat with Us
               </a>
-              <Link href="/our-products" className="btn btn-outline-light" id="hero-cta-products">
+              <Link href="/our-products" className="btn btn-outline btn-outline-light btn-lg" id="hero-cta-products">
                 View Products
               </Link>
             </div>
-          </div>
+          </Reveal>
         </div>
       </section>
 
-      {/* STATS STRIP */}
+      {/* STATS */}
       <section className={styles.stats} aria-label="Company statistics">
         <div className="container">
-          <div className={styles.statsGrid}>
-            <div className={styles.stat}>
-              <div className={styles.statNumber}>100%</div>
-              <div className={styles.statLabel}>Sustainable Materials</div>
-            </div>
-            <div className={styles.stat}>
-              <div className={styles.statNumber}>5+</div>
-              <div className={styles.statLabel}>Product Categories</div>
-            </div>
-            <div className={styles.stat}>
-              <div className={styles.statNumber}>Global</div>
-              <div className={styles.statLabel}>Export Standards</div>
-            </div>
-            <div className={styles.stat}>
-              <div className={styles.statNumber}>✦</div>
-              <div className={styles.statLabel}>Handcrafted by Artisans</div>
+          <div className={styles.statsInner}>
+            <Reveal className={styles.statsIntro}>
+              <h2>Global Standards in Numbers</h2>
+              <p>We introduce our sacred numbers, reflecting years of dedication, sustainable sourcing, and international export experience.</p>
+            </Reveal>
+            <div className={styles.statsGrid}>
+              <Reveal delay={100} className={styles.stat}>
+                <div className={styles.statNumber}>100%</div>
+                <div className={styles.statLabel}>Sustainable Materials</div>
+              </Reveal>
+              <Reveal delay={200} className={styles.stat}>
+                <div className={styles.statNumber}>5+</div>
+                <div className={styles.statLabel}>Product Categories</div>
+              </Reveal>
+              <Reveal delay={300} className={styles.stat}>
+                <div className={styles.statNumber}>Global</div>
+                <div className={styles.statLabel}>Export Standards</div>
+              </Reveal>
+              <Reveal delay={400} className={styles.stat}>
+                <div className={styles.statNumber}>✦</div>
+                <div className={styles.statLabel}>Handcrafted by Artisans</div>
+              </Reveal>
             </div>
           </div>
         </div>
@@ -72,17 +79,17 @@ export default function Home() {
       {/* FEATURES / WHY CHOOSE US */}
       <section className={styles.features} aria-labelledby="features-title">
         <div className="container">
-          <div className={styles.featuresHeader}>
+          <Reveal className={styles.featuresHeader}>
             <p className={`label ${styles.sectionEyebrow}`}>Why Choose Us</p>
             <h2 id="features-title">Crafted with Purpose,<br />Delivered with Excellence</h2>
             <div className={`${styles.divider} ${styles.dividerCenter}`}></div>
             <p className={styles.textSecondary} style={{ maxWidth: "52ch", marginInline: "auto", marginTop: "var(--sp-md)" }}>
               Every product we make carries the soul of Indonesian craftsmanship and the promise of global quality standards.
             </p>
-          </div>
+          </Reveal>
 
           <div className={styles.featuresGrid}>
-            <div className={styles.featureCard}>
+            <Reveal delay={100} className={styles.featureCard}>
               <svg className={styles.featureCardIcon} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 3C8.1 3 5 6.1 5 10c0 5.25 7 11 7 11s7-5.75 7-11c0-3.9-3.1-7-7-7z" />
                 <circle cx="12" cy="10" r="2.5" strokeLinecap="round" />
@@ -91,8 +98,8 @@ export default function Home() {
               <p className={styles.featureCardBody}>
                 We prioritize the planet by using renewable organic fibers — rattan, banana leaf, and sea almond — that leave a minimal environmental footprint.
               </p>
-            </div>
-            <div className={styles.featureCard}>
+            </Reveal>
+            <Reveal delay={200} className={styles.featureCard}>
               <svg className={styles.featureCardIcon} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
@@ -100,8 +107,8 @@ export default function Home() {
               <p className={styles.featureCardBody}>
                 Every piece is handwoven with precision by skilled local artisans, ensuring that no two items are exactly alike — each carries a unique story.
               </p>
-            </div>
-            <div className={styles.featureCard}>
+            </Reveal>
+            <Reveal delay={300} className={styles.featureCard}>
               <svg className={styles.featureCardIcon} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064" />
               </svg>
@@ -109,7 +116,7 @@ export default function Home() {
               <p className={styles.featureCardBody}>
                 While our roots are local, our quality is international. All products are durable, beautiful, and certified ready for the global market.
               </p>
-            </div>
+            </Reveal>
           </div>
         </div>
       </section>
@@ -117,7 +124,7 @@ export default function Home() {
       {/* PRODUCT TEASER */}
       <section className={styles.productTeaser} aria-labelledby="teaser-title">
         <div className="container">
-          <div className={styles.productTeaserHeader}>
+          <Reveal className={styles.productTeaserHeader}>
             <div>
               <p className={`label ${styles.sectionEyebrow}`}>Our Products</p>
               <h2 id="teaser-title">From Forest to Your Home</h2>
@@ -125,10 +132,10 @@ export default function Home() {
             <Link href="/our-products" className="btn btn-outline" id="teaser-see-all">
               See All Products →
             </Link>
-          </div>
+          </Reveal>
 
           <div className={styles.productTeaserGrid}>
-            <article className={styles.productThumb}>
+            <Reveal delay={100} className={styles.productThumb}>
               <div className={styles.productThumbImgWrap}>
                 <span className={styles.productThumbTag}>Rattan</span>
                 <img src="/assets/photo-product-rotan01.webp" alt="Rattan Furniture" className={styles.productThumbImg} />
@@ -138,8 +145,8 @@ export default function Home() {
                 <h3 className={styles.productThumbName}>Ergonomic Rocking Chair</h3>
                 <p className={styles.productThumbDesc}>High-grade rattan poles with contoured backrest for lumbar support. EU certified.</p>
               </div>
-            </article>
-            <article className={styles.productThumb}>
+            </Reveal>
+            <Reveal delay={200} className={styles.productThumb}>
               <div className={styles.productThumbImgWrap}>
                 <span className={styles.productThumbTag}>Botanical</span>
                 <img src="/assets/photo-catapang-leaf.webp" alt="Dried Catappa Leaves" className={styles.productThumbImg} />
@@ -149,18 +156,18 @@ export default function Home() {
                 <h3 className={styles.productThumbName}>Dried Catappa Leaves</h3>
                 <p className={styles.productThumbDesc}>Premium Grade A Indian Almond Leaves — natural tannins for aquatic health.</p>
               </div>
-            </article>
-            <article className={styles.productThumb}>
+            </Reveal>
+            <Reveal delay={300} className={styles.productThumb}>
               <div className={styles.productThumbImgWrap}>
-                <span className={styles.productThumbTag}>Botanical</span>
-                <img src="/assets/photo-banana-leaf.webp" alt="Fresh Banana Leaves" className={styles.productThumbImg} />
+                <span className={styles.productThumbTag}>Spices</span>
+                <img src="/assets/cloves2.webp" alt="Cloves (Cengkeh)" className={styles.productThumbImg} />
               </div>
               <div className={styles.productThumbBody}>
-                <p className={styles.productThumbCategory}>Botanical Products</p>
-                <h3 className={styles.productThumbName}>Fresh Banana Leaves</h3>
-                <p className={styles.productThumbDesc}>Culinary Grade — vibrant, organic, pesticide-free. Air freight ready.</p>
+                <p className={styles.productThumbCategory}>Spices</p>
+                <h3 className={styles.productThumbName}>Cloves (Cengkeh)</h3>
+                <p className={styles.productThumbDesc}>Hand-picked dried cloves with high oil content. Export grade quality.</p>
               </div>
-            </article>
+            </Reveal>
           </div>
         </div>
       </section>
@@ -168,36 +175,38 @@ export default function Home() {
       {/* GALLERY */}
       <section className={styles.gallery} aria-labelledby="gallery-title">
         <div className="container">
-          <div className={styles.galleryHeader}>
+          <Reveal className={styles.galleryHeader}>
             <p className={`label ${styles.sectionEyebrow}`}>Our Gallery</p>
             <h2 id="gallery-title">A Glimpse of Our Craft</h2>
             <div className={`${styles.divider} ${styles.dividerCenter}`}></div>
-          </div>
-          <HomeGalleryLightbox />
+          </Reveal>
+          <Reveal delay={200}>
+            <HomeGalleryLightbox />
+          </Reveal>
         </div>
       </section>
 
       {/* CERTIFICATION & COMPLIANCE */}
       <section className={styles.gallery} aria-labelledby="certification-title">
         <div className="container">
-          <div className={styles.galleryHeader}>
+          <Reveal className={styles.galleryHeader}>
             <p className={`label ${styles.sectionEyebrow}`}>Quality &amp; Trust</p>
             <h2 id="certification-title">Certification &amp; Compliance</h2>
             <div className={`${styles.divider} ${styles.dividerCenter}`}></div>
-          </div>
-          <div style={{ textAlign: "center", marginTop: "2rem" }}>
+          </Reveal>
+          <Reveal delay={200} style={{ textAlign: "center", marginTop: "2rem" }}>
             <img
               src="/assets/certification-compliance.webp"
               alt="Certification & Compliance"
               style={{ maxWidth: "100%", borderRadius: "8px" }}
             />
-          </div>
+          </Reveal>
         </div>
       </section>
 
       {/* CTA BANNER */}
       <section className={styles.ctaBanner} aria-label="Call to action">
-        <div className={`container ${styles.ctaBannerInner}`}>
+        <Reveal className={`container ${styles.ctaBannerInner}`}>
           <span className={styles.ctaBannerEyebrow}>Ready to Order?</span>
           <h2 className={styles.ctaBannerTitle}>Let&apos;s Bring Nature&apos;s Art to Your World</h2>
           <p className={styles.ctaBannerSub}>
@@ -213,7 +222,7 @@ export default function Home() {
             <WAIcon />
             WhatsApp Us Now
           </a>
-        </div>
+        </Reveal>
       </section>
 
     </main>

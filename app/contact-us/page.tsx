@@ -3,6 +3,7 @@
 import React from 'react';
 import styles from './contact.module.css';
 import { WA_NUMBER } from '@/app/lib/data';
+import Reveal from '../components/Reveal';
 
 const WAIcon = () => (
   <svg className={styles.iconWa} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -16,12 +17,12 @@ export default function ContactPage() {
     <main className={styles.pageMain}>
       {/* PAGE HERO */}
       <section className={styles.pageHero} aria-label="Contact hero">
-        <div className={`container ${styles.pageHeroInner}`}>
+        <Reveal className={`container ${styles.pageHeroInner}`}>
           <span className={styles.pageHeroEyebrow}>Get in Touch</span>
           <h1 className={styles.pageHeroTitle}>
             Let's Start a<br /><em>Conversation</em>
           </h1>
-        </div>
+        </Reveal>
       </section>
 
       {/* CONTACT SECTION */}
@@ -29,7 +30,7 @@ export default function ContactPage() {
         <div className="container">
           <div className={styles.contactSectionGrid}>
             {/* LEFT: Info Column */}
-            <div className={styles.contactInfo}>
+            <Reveal className={styles.contactInfo}>
               <p className={`label ${styles.contactInfoEyebrow}`}>Contact Information</p>
               <h2 id="contact-title" className={styles.contactInfoTitle}>We'd Love to<br />Hear From You</h2>
               <div className={styles.divider}></div>
@@ -119,10 +120,10 @@ export default function ContactPage() {
                   <WAIcon /> Open WhatsApp
                 </a>
               </div>
-            </div>
+            </Reveal>
 
             {/* RIGHT: Map Column */}
-            <div className={styles.contactMap}>
+            <Reveal delay={200} className={styles.contactMap}>
               <div className={styles.mapWrap}>
                 <iframe
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.5972607017!2d101.37975!3d0.47685!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31d5b1e1cf1b0001%3A0x0!2sPerhentian%20Marpoyan%2C%20Kec.%20Marpoyan%20Damai%2C%20Kota%20Pekanbaru%2C%20Riau!5e0!3m2!1sen!2sid!4v1716300000000!5m2!1sen!2sid"
@@ -156,14 +157,14 @@ export default function ContactPage() {
                   WhatsApp messages received outside office hours will be replied on the next business day.
                 </p>
               </div>
-            </div>
+            </Reveal>
           </div>
         </div>
       </section>
 
       {/* WHATSAPP BANNER */}
       <section className={styles.waBanner} aria-label="WhatsApp contact banner">
-        <div className="container">
+        <Reveal className="container">
           <div className={styles.waBannerInner}>
             <div className={styles.waBannerContent}>
               <p className={`label ${styles.waBannerEyebrow}`}>Preferred Contact Method</p>
@@ -182,7 +183,7 @@ export default function ContactPage() {
               <WAIcon /> +62 877-5928-2334
             </a>
           </div>
-        </div>
+        </Reveal>
       </section>
     </main>
   );

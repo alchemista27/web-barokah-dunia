@@ -8,6 +8,7 @@ export default function Navbar() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -52,10 +53,42 @@ export default function Navbar() {
               About Us
             </Link>
           </li>
-          <li>
-            <Link href="/our-products" className={`nav-link${isActive('/our-products') ? ' active' : ''}`} id="nav-products">
-              Our Products
-            </Link>
+          <li
+            className="nav-item-dropdown"
+            onMouseEnter={() => {
+              if (window.innerWidth > 768) setDropdownOpen(true);
+            }}
+            onMouseLeave={() => {
+              if (window.innerWidth > 768) setDropdownOpen(false);
+            }}
+          >
+            <button
+              className={`nav-link nav-link-btn${pathname.startsWith('/our-products') ? ' active' : ''}`}
+              id="nav-products"
+              onClick={() => {
+                if (window.innerWidth <= 768) {
+                  setDropdownOpen(!dropdownOpen);
+                }
+              }}
+              aria-haspopup="true"
+              aria-expanded={dropdownOpen}
+            >
+              Products
+              <svg className={`dropdown-icon ${dropdownOpen ? 'open' : ''}`} width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </button>
+            <div className={`nav-dropdown-menu ${dropdownOpen ? 'show' : ''}`}>
+              <Link href="/our-products/furniture-rotan" className={`dropdown-item ${pathname === '/our-products/furniture-rotan' ? 'active' : ''}`} onClick={() => { setMenuOpen(false); setDropdownOpen(false); }}>
+                Rattan Furniture
+              </Link>
+              <Link href="/our-products/daun-daunan" className={`dropdown-item ${pathname === '/our-products/daun-daunan' ? 'active' : ''}`} onClick={() => { setMenuOpen(false); setDropdownOpen(false); }}>
+                Botanical Leaves
+              </Link>
+              <Link href="/our-products/rempah" className={`dropdown-item ${pathname === '/our-products/rempah' ? 'active' : ''}`} onClick={() => { setMenuOpen(false); setDropdownOpen(false); }}>
+                Spices
+              </Link>
+            </div>
           </li>
           <li>
             <Link href="/contact-us" className={`nav-link${isActive('/contact-us') ? ' active' : ''}`} id="nav-contact">

@@ -1,9 +1,8 @@
-'use client';
-
-import React, { useState } from 'react';
+import React from 'react';
+import Link from 'next/link';
+import Reveal from '../components/Reveal';
 import styles from './products.module.css';
-import ProductModal from '@/app/components/ProductModal';
-import { PRODUCTS, WA_NUMBER } from '@/app/lib/data';
+import { WA_NUMBER } from '@/app/lib/data';
 
 const WAIcon = () => (
   <svg className={styles.iconWa} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -12,141 +11,80 @@ const WAIcon = () => (
   </svg>
 );
 
-const ChairIcon = () => (
-  <svg className={styles.tabIcon} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" aria-hidden="true">
-    <path d="M7 11V7a3 3 0 0 1 3-3h4a3 3 0 0 1 3 3v4" strokeLinecap="round" strokeLinejoin="round" />
-    <path d="M6 11h12v6H6z" strokeLinecap="round" strokeLinejoin="round" />
-    <path d="M8 17v3M16 17v3" strokeLinecap="round" strokeLinejoin="round" />
-  </svg>
-);
-
-const EcoIcon = () => (
-  <svg className={styles.tabIcon} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" aria-hidden="true">
-    <path d="M5 19c9 0 14-5 14-14-9 0-14 5-14 14Z" strokeLinecap="round" strokeLinejoin="round" />
-    <path d="M5 19 15 9" strokeLinecap="round" strokeLinejoin="round" />
-  </svg>
-);
-
 export default function ProductsPage() {
-  const [activeTab, setActiveTab] = useState('rattan');
-  const [selectedProduct, setSelectedProduct] = useState<string | null>(null);
-
-  const rattanProducts = ['rocking-horse', 'rocking-chair', 'room-divider'];
-  const botanicalProducts = ['catappa-leaves', 'banana-leaves'];
-  const renderProductCard = (productId: string) => {
-    const product = PRODUCTS[productId as keyof typeof PRODUCTS];
-
-    return (
-      <article key={productId} className={styles.productCard}>
-        <div className={styles.productCardImgWrap}>
-          <span className={styles.productCardBadge}>{product.badge}</span>
-          <img
-            src={product.image}
-            alt={product.name}
-            className={styles.productCardImg}
-            style={productId === 'rocking-chair' ? { objectPosition: 'center top' } : undefined}
-          />
-        </div>
-        <div className={styles.productCardBody}>
-          <p className={styles.productCardCategory}>{product.category}</p>
-          <button
-            className={`${styles.productCardName} ${styles.productCardNameButton}`}
-            type="button"
-            title="Click for full specifications"
-            onClick={() => setSelectedProduct(productId)}
-          >
-            {product.name} <span className={styles.productCardNameHint}>↗ Details</span>
-          </button>
-          <p className={styles.productCardDesc}>{product.shortDesc}</p>
-          <div className={styles.productCardFooter}>
-            <a
-              href={`https://wa.me/${WA_NUMBER}?text=${product.waText}`}
-              className={styles.btnPrimary}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <WAIcon /> Enquire on WhatsApp
-            </a>
-          </div>
-        </div>
-      </article>
-    );
-  };
-
   return (
     <main className={styles.pageMain}>
       {/* PAGE HERO */}
       <section className={styles.pageHero} aria-label="Products hero">
-        <div className={`container ${styles.pageHeroInner}`}>
+        <Reveal className={`container ${styles.pageHeroInner}`}>
           <span className={styles.pageHeroEyebrow}>Product Catalogue 2026</span>
           <h1 className={styles.pageHeroTitle}>
             Nature, <em>Crafted</em><br />for the World
           </h1>
-        </div>
+        </Reveal>
       </section>
 
-      {/* PRODUCTS SECTION */}
-      <section className={styles.productsSection} aria-labelledby="products-title">
+      {/* CATEGORY HUB */}
+      <section className={styles.productsSection} aria-label="Product Categories">
         <div className="container">
-          {/* Tab Bar */}
-          <div className={styles.tabBar} role="tablist" aria-label="Product categories">
-            <button
-              className={`${styles.tabBtn} ${activeTab === 'rattan' ? styles.active : ''}`}
-              id="tab-rattan"
-              role="tab"
-              aria-selected={activeTab === 'rattan'}
-              aria-controls="panel-rattan"
-              onClick={() => setActiveTab('rattan')}
-            >
-              <ChairIcon /> Rattan Furniture
-            </button>
-            <button
-              className={`${styles.tabBtn} ${activeTab === 'botanical' ? styles.active : ''}`}
-              id="tab-botanical"
-              role="tab"
-              aria-selected={activeTab === 'botanical'}
-              aria-controls="panel-botanical"
-              onClick={() => setActiveTab('botanical')}
-            >
-              <EcoIcon /> Botanical Products
-            </button>
-          </div>
+          <Reveal className={styles.hubHeader}>
+            <p className={`label ${styles.sectionEyebrow}`}>Our Collections</p>
+            <h2 className={styles.hubTitle}>Explore Our Categories</h2>
+            <div className={styles.dividerCenter}></div>
+            <p className={styles.hubSub}>
+              Discover our diverse range of premium Indonesian products, carefully categorized to meet your specific needs.
+            </p>
+          </Reveal>
 
-          {/* TAB PANEL: RATTAN */}
-          <div className={`${styles.tabPanel} ${activeTab === 'rattan' ? styles.active : ''}`} id="panel-rattan" role="tabpanel" aria-labelledby="tab-rattan">
-            <div className={styles.categoryHeader}>
-              <p className={`label ${styles.categoryHeaderEyebrow}`}>Rattan Furniture</p>
-              <h2 className={styles.categoryHeaderTitle} id="products-title">Handwoven Rattan Collection</h2>
-              <p className={styles.categoryHeaderBody}>
-                Experience the perfect harmony of nature and artistry. Handwoven from premium Indonesian rattan, our furniture collection brings organic warmth and timeless elegance to any living space. Each piece is a masterpiece of durability and sustainable design.
-              </p>
-            </div>
+          <div className={styles.hubGrid}>
+            <Reveal delay={100}>
+              <Link href="/our-products/furniture-rotan" className={styles.hubCard}>
+                <div className={styles.hubCardImgWrap}>
+                  <img src="/assets/photo-furniture02.webp" alt="Rattan Furniture" className={styles.hubCardImg} />
+                  <div className={styles.hubCardOverlay}></div>
+                </div>
+                <div className={styles.hubCardBody}>
+                  <h3 className={styles.hubCardTitle}>Rattan Furniture</h3>
+                  <p className={styles.hubCardDesc}>Handwoven chairs, dividers, and eco-friendly nursery décor.</p>
+                  <span className={styles.hubCardLink}>Explore Collection →</span>
+                </div>
+              </Link>
+            </Reveal>
 
-            <div className={styles.productGrid}>
-              {rattanProducts.map(renderProductCard)}
-            </div>
-          </div>
+            <Reveal delay={200}>
+              <Link href="/our-products/daun-daunan" className={styles.hubCard}>
+                <div className={styles.hubCardImgWrap}>
+                  <img src="/assets/photo-banana-leaf.webp" alt="Botanical Leaves" className={styles.hubCardImg} />
+                  <div className={styles.hubCardOverlay}></div>
+                </div>
+                <div className={styles.hubCardBody}>
+                  <h3 className={styles.hubCardTitle}>Botanical Leaves</h3>
+                  <p className={styles.hubCardDesc}>Premium sun-dried catappa and culinary grade banana leaves.</p>
+                  <span className={styles.hubCardLink}>Explore Collection →</span>
+                </div>
+              </Link>
+            </Reveal>
 
-          {/* TAB PANEL: BOTANICAL */}
-          <div className={`${styles.tabPanel} ${activeTab === 'botanical' ? styles.active : ''}`} id="panel-botanical" role="tabpanel" aria-labelledby="tab-botanical">
-            <div className={styles.categoryHeader}>
-              <p className={`label ${styles.categoryHeaderEyebrow}`}>Botanical Products</p>
-              <h2 className={styles.categoryHeaderTitle}>Premium Agricultural Exports</h2>
-              <p className={styles.categoryHeaderBody}>
-                Straight from Indonesia's fertile lands — our botanical products are hand-selected, naturally processed, and certified for international export. Pure, organic, and free from chemicals.
-              </p>
-            </div>
-
-            <div className={styles.productGrid}>
-              {botanicalProducts.map(renderProductCard)}
-            </div>
+            <Reveal delay={300}>
+              <Link href="/our-products/rempah" className={styles.hubCard}>
+                <div className={styles.hubCardImgWrap}>
+                  <img src="/assets/cloves2.webp" alt="Spices" className={styles.hubCardImg} />
+                  <div className={styles.hubCardOverlay}></div>
+                </div>
+                <div className={styles.hubCardBody}>
+                  <h3 className={styles.hubCardTitle}>Premium Spices</h3>
+                  <p className={styles.hubCardDesc}>High-quality Indonesian cardamom, cloves, and ginger.</p>
+                  <span className={styles.hubCardLink}>Explore Collection →</span>
+                </div>
+              </Link>
+            </Reveal>
           </div>
         </div>
       </section>
 
       {/* ORDER CTA */}
       <section className={styles.orderCta} aria-label="Order call to action">
-        <div className="container">
+        <Reveal className="container">
           <h2 className={styles.orderCtaTitle}>Ready to Place an Order?</h2>
           <p className={styles.orderCtaBody}>
             Contact us directly on WhatsApp for bulk pricing, custom specifications, shipping arrangements, and export documentation. Our team responds within 24 hours.
@@ -160,16 +98,8 @@ export default function ProductsPage() {
           >
             <WAIcon /> WhatsApp Us Now
           </a>
-        </div>
+        </Reveal>
       </section>
-
-      {/* PRODUCT MODAL */}
-      {selectedProduct && (
-        <ProductModal
-          product={PRODUCTS[selectedProduct as keyof typeof PRODUCTS]}
-          onClose={() => setSelectedProduct(null)}
-        />
-      )}
     </main>
   );
 }

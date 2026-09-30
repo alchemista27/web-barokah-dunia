@@ -8,9 +8,9 @@
 
 /* ---- HERO -------------------------------------------------- */
 .hero {
-  min-height: 100vh;
+  min-height: 90vh;
   background-color: var(--color-primary);
-  background-image: linear-gradient(rgba(22, 44, 58, 0.85), rgba(22, 44, 58, 0.85)), url('/assets/hero-info-barokah.webp');
+  background-image: linear-gradient(rgba(26, 29, 22, 0.7), rgba(26, 29, 22, 0.7)), url('/assets/new-hero.webp');
   background-size: cover;
   background-position: center;
   display: flex;
@@ -19,37 +19,24 @@
   overflow: hidden;
 }
 
-.hero::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image: radial-gradient(ellipse 80% 60% at 70% 50%, rgba(201,161,106,0.07) 0%, transparent 70%);
-  pointer-events: none;
-}
-
-.hero::after {
-  content: '';
-  position: absolute;
-  bottom: -1px;
-  left: 0;
-  right: 0;
-  height: 80px;
-  background-color: var(--color-neutral);
-  clip-path: polygon(0 100%, 100% 100%, 100% 40%, 0 100%);
-}
-
 .heroInner {
   position: relative;
   z-index: 1;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--sp-xl);
-  align-items: center;
   width: 100%;
   padding-block: var(--sp-2xl);
+  max-width: 800px;
+  margin-inline: auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.heroContent {}
+.heroContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
 .heroEyebrow {
   display: inline-block;
@@ -57,31 +44,33 @@
   font-weight: 500;
   letter-spacing: var(--ls-label);
   text-transform: uppercase;
-  color: var(--color-tertiary);
+  color: #B5D585;
   margin-bottom: var(--sp-md);
 }
 
 .heroHeadline {
   font-family: var(--font-display);
-  font-size: var(--fs-display);
+  font-size: clamp(2rem, 4vw, 3.2rem);
   font-weight: 500;
-  line-height: 1.08;
-  letter-spacing: -0.02em;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
   color: var(--color-on-primary);
   margin-bottom: var(--sp-lg);
+  max-width: 20ch;
 }
 
 .heroHeadline em {
   font-style: italic;
-  color: var(--color-tertiary);
+  color: #B5D585;
 }
 
 .heroSub {
   font-size: 1.1rem;
-  color: rgba(251, 247, 236, 0.7);
-  line-height: 1.7;
-  max-width: 44ch;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.6;
+  max-width: 55ch;
   margin-bottom: var(--sp-xl);
+  margin-inline: auto;
 }
 
 .heroCta {
@@ -89,61 +78,57 @@
   flex-wrap: wrap;
   gap: var(--sp-md);
   align-items: center;
+  justify-content: center;
 }
 
-.heroVisual {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 240px 160px;
-  gap: var(--sp-sm);
-  border-radius: var(--r-lg);
-  overflow: hidden;
-}
-
-.heroImg {
-  object-fit: cover;
-  width: 100%;
-  height: 100%;
-  border-radius: var(--r-md);
-  transition: transform var(--transition-slow);
-}
-
-.heroImg:hover { transform: scale(1.03); }
-
-.heroImgTall {
-  grid-row: span 2;
-}
-
-/* ---- STATS STRIP ------------------------------------------ */
+/* ---- STATS ------------------------------------------------ */
 .stats {
-  background-color: var(--color-tertiary);
-  padding-block: var(--sp-xl);
+  background-color: var(--color-surface);
+  padding-block: var(--sp-2xl);
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.statsInner {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: var(--sp-xl);
+  align-items: center;
+}
+
+.statsIntro h2 {
+  font-family: var(--font-display);
+  font-size: var(--fs-h2);
+  color: var(--color-primary);
+  margin-bottom: var(--sp-sm);
+}
+
+.statsIntro p {
+  color: var(--color-secondary);
+  line-height: 1.6;
 }
 
 .statsGrid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: var(--sp-lg);
-  text-align: center;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--sp-xl);
 }
-
-.stat {}
 
 .statNumber {
   font-family: var(--font-display);
-  font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+  font-size: clamp(2rem, 4vw, 3rem);
   font-weight: 500;
-  color: var(--color-primary);
+  color: var(--color-tertiary);
   line-height: 1;
   margin-bottom: var(--sp-xs);
 }
 
 .statLabel {
   font-size: 0.85rem;
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: rgba(22, 44, 58, 0.75);
+  color: var(--color-primary);
 }
 
 /* ---- FEATURES / WHY US ------------------------------------ */
@@ -383,18 +368,14 @@
 
 /* ---- RESPONSIVE ------------------------------------------- */
 @media (max-width: 900px) {
-  .heroInner { grid-template-columns: 1fr; text-align: center; }
-  .heroSub { max-width: 100%; }
-  .heroCta { justify-content: center; }
-  .heroVisual { display: none; }
+  .statsInner { grid-template-columns: 1fr; }
   .featuresGrid { grid-template-columns: 1fr 1fr; }
   .productTeaserGrid { grid-template-columns: 1fr 1fr; }
-  .statsGrid { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (max-width: 600px) {
   .featuresGrid { grid-template-columns: 1fr; }
   .productTeaserGrid { grid-template-columns: 1fr; }
   .productTeaserHeader { flex-direction: column; align-items: flex-start; }
-  .statsGrid { grid-template-columns: repeat(2, 1fr); }
+  .statsGrid { grid-template-columns: 1fr; gap: var(--sp-lg); }
 }
