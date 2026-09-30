@@ -14,7 +14,7 @@
 
 .galleryGrid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: var(--sp-sm);
 }
 
@@ -42,14 +42,78 @@
 
 @media (max-width: 900px) {
   .galleryGrid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
 @media (max-width: 600px) {
   .galleryGrid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
   }
+}
+
+/* --- PAGINATION --- */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--sp-md);
+  margin-top: var(--sp-xl);
+}
+
+.pageNumbers {
+  display: flex;
+  gap: var(--sp-xs);
+}
+
+.pageBtn {
+  background: transparent;
+  border: 1px solid var(--color-neutral-dark);
+  color: var(--color-neutral-dark);
+  padding: 0.5rem 1rem;
+  border-radius: var(--r-sm);
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+}
+
+.pageBtn:hover:not(:disabled) {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: white;
+}
+
+.pageBtn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.pageDot {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--r-sm);
+  background-color: transparent;
+  color: var(--color-neutral-dark);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 0;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pageDot:hover {
+  background-color: var(--color-neutral);
+}
+
+.pageDotActive {
+  background-color: var(--color-primary);
+  color: white;
+  border-color: var(--color-primary);
 }
 
 /* --- LIGHTBOX OVERLAY --- */

@@ -1,44 +1,36 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { createPortal } from 'react-dom';
 import styles from './HomeGalleryLightbox.module.css';
 
 const galleryItems = [
-  {
-    src: '/assets/photo-product-rotan01.webp',
-    alt: 'Handcrafted rattan furniture detail',
-    title: 'Rattan Craft',
-  },
-  {
-    src: '/assets/photo-furniture02.webp',
-    alt: 'Ergonomic rattan rocking chair',
-    title: 'Rocking Chair',
-  },
-  {
-    src: '/assets/photo-catapang-leaf.webp',
-    alt: 'Dried catappa leaves',
-    title: 'Catappa Leaves',
-  },
-  {
-    src: '/assets/photo-banana-leaf.webp',
-    alt: 'Fresh banana leaves',
-    title: 'Banana Leaves',
-  },
-  {
-    src: '/assets/photo-product-rotan02.webp',
-    alt: 'Natural rattan furniture product',
-    title: 'Natural Rattan',
-  },
-  {
-    src: '/assets/hand-woven-room-devider.webp',
-    alt: 'Hand woven rattan room divider',
-    title: 'Room Divider',
-  },
+  { src: '/assets/cloves2.webp', alt: 'Dried cloves high eugenol', title: 'Cloves (Cengkeh)' },
+  { src: '/assets/kapulaga-copy.webp', alt: 'Premium Indonesian Cardamom', title: 'Cardamom (Kapulaga)' },
+  { src: '/assets/red-ginger-copy.webp', alt: 'Robust red ginger', title: 'Red Ginger' },
+  { src: '/assets/ginger-powder.webp', alt: 'Finely ground ginger powder', title: 'Ginger Powder' },
+  { src: '/assets/dried-ginger.webp', alt: 'Sun-dried ginger root', title: 'Dried Ginger' },
+  { src: '/assets/white-ginger.webp', alt: 'Premium white ginger', title: 'White Ginger' },
+  { src: '/assets/photo-product-rotan01.webp', alt: 'Handcrafted rattan furniture detail', title: 'Rattan Craft' },
+  { src: '/assets/photo-furniture02.webp', alt: 'Ergonomic rattan rocking chair', title: 'Rocking Chair' },
+  { src: '/assets/hand-woven-room-devider.webp', alt: 'Hand woven rattan room divider', title: 'Room Divider' },
+  { src: '/assets/rattan-horse-rocking.webp', alt: 'Rattan Rocking Horse', title: 'Kids Rocking Horse' },
+  { src: '/assets/photo-product-rotan02.webp', alt: 'Natural rattan furniture product', title: 'Natural Rattan' },
+  { src: '/assets/photo-furniture.webp', alt: 'Classic rattan piece', title: 'Classic Rattan' },
+  { src: '/assets/photo-catapang-leaf.webp', alt: 'Dried catappa leaves', title: 'Catappa Leaves' },
+  { src: '/assets/photo-catapang-leaf03.webp', alt: 'Indian Almond leaves bunch', title: 'Premium Almond Leaves' },
+  { src: '/assets/photo-banana-leaf.webp', alt: 'Fresh banana leaves', title: 'Banana Leaves' },
+  { src: '/assets/photo-banana-leaf04.webp', alt: 'Culinary grade banana leaves', title: 'Culinary Banana Leaves' },
 ];
 
 export default function HomeGalleryLightbox() {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const [currentPage, setCurrentPage] = useState(0);
+  
   const isOpen = activeIndex !== null;
+  const itemsPerPage = 8;
+  const totalPages = Math.ceil(galleryItems.length / itemsPerPage);
+  const visibleItems = galleryItems.slice(currentPage * itemsPerPage, (currentPage + 1) * itemsPerPage);
 
   const closeLightbox = () => setActiveIndex(null);
 
@@ -80,20 +72,59 @@ export default function HomeGalleryLightbox() {
   return (
     <>
       <div className={styles.galleryGrid}>
-        {galleryItems.map((item, index) => (
-          <button
-            className={styles.galleryItem}
-            key={item.src}
-            type="button"
-            onClick={() => setActiveIndex(index)}
-            aria-label={`Open ${item.title} image`}
-          >
-            <img src={item.src} alt={item.alt} />
-          </button>
-        ))}
+        {visibleItems.map((item, index) => {
+          const absoluteIndex = currentPage * itemsPerPage + index;
+          return (
+            <button
+              className={styles.galleryItem}
+              key={item.src}
+              type="button"
+              onClick={() => setActiveIndex(absoluteIndex)}
+              aria-label={`Open ${item.title} image`}
+            >
+              <img src={item.src} alt={item.alt} />
+            </button>
+          );
+        })}
       </div>
 
-      {activeItem && (
+      {totalPages > 1 && (
+        <div className={styles.pagination}>
+          <button 
+            className={styles.pageBtn} 
+            onClick={() => setCurrentPage(prev => Math.max(0, prev - 1))}
+            disabled={currentPage === 0}
+            aria-label="Previous page"
+          >
+            &larr; Prev
+          </button>
+          
+          <div className={styles.pageNumbers}>
+            {Array.from({ length: totalPages }).map((_, i) => (
+              <button
+                key={i}
+                type="button"
+                className={`${styles.pageDot} ${currentPage === i ? styles.pageDotActive : ''}`}
+                onClick={() => setCurrentPage(i)}
+                aria-label={`Go to page ${i + 1}`}
+              >
+                {i + 1}
+              </button>
+            ))}
+          </div>
+
+          <button 
+            className={styles.pageBtn} 
+            onClick={() => setCurrentPage(prev => Math.min(totalPages - 1, prev + 1))}
+            disabled={currentPage === totalPages - 1}
+            aria-label="Next page"
+          >
+            Next &rarr;
+          </button>
+        </div>
+      )}
+
+      {activeItem && typeof document !== 'undefined' && createPortal(
         <div 
           className={`${styles.lightboxOverlay} ${isOpen ? styles.isOpen : ''}`} 
           role="dialog" 
@@ -128,7 +159,8 @@ export default function HomeGalleryLightbox() {
               </svg>
             </button>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </>
   );
