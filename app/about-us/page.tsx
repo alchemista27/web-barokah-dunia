@@ -154,12 +154,12 @@ export default function AboutPage() {
             <div className={styles.dividerCenter}></div>
           </div>
 
-          <div className={styles.grid3}>
+          <div className={styles.grid4}>
             {[
               {
                 title: 'Company Profile',
                 desc: 'Detailed overview of our company, history, and export capabilities.',
-                href: '/documents/Company%20Profile%20Barokah%20Dunia%20Semesta.pdf'
+                href: '/documents/Company%20Profile%20Info%20Barokah%20Dunia.pdf'
               },
               {
                 title: 'Agriculture Catalogue',
@@ -170,6 +170,11 @@ export default function AboutPage() {
                 title: 'Rattan Catalogue',
                 desc: 'Browse our handcrafted collection of premium rattan furniture.',
                 href: '/documents/Catalogue%20Produk%20Rotan.pdf'
+              },
+              {
+                title: 'Spices Catalogue',
+                desc: 'Premium selection of Indonesian spices including cloves, dried ginger, and cardamom.',
+                href: '/documents/Catalogue%20Produk%20Rempah.pdf'
               }
             ].map((doc, i) => (
               <div key={i} className={styles.card} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', gap: 'var(--sp-md)' }}>

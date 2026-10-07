@@ -324,6 +324,12 @@
   gap: var(--sp-lg);
 }
 
+.grid4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--sp-lg);
+}
+
 .card {
   background-color: var(--color-surface);
   color: var(--color-primary);
@@ -358,13 +364,15 @@
     grid-template-columns: 1fr;
   }
 
-  .grid3 {
+  .grid3,
+  .grid4 {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media (max-width: 600px) {
-  .grid3 {
+  .grid3,
+  .grid4 {
     grid-template-columns: 1fr;
   }
 }
